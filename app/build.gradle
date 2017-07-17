@@ -1,30 +1,101 @@
+/*
+ * Copyright (C) 2017  Gowtham Parimelazhagan.
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU Affero General Public License as published
+ *     by the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU Affero General Public License for more details.
+ *
+ *     You should have received a copy of the GNU Affero General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
     defaultConfig {
         applicationId "com.gm.tolet"
-        minSdkVersion 19
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.code
+        versionName versions.name
+        vectorDrawables.useSupportLibrary = true
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+
+            // Run code coverage reports by default on debug builds.
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "mode"
+    productFlavors {
+        demo {
+            dimension "mode"
+//            buildConfigField("String", "BASE_URL", "\"http://www.gmtest.com\"")
+//            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+        }
+        prod {
+            dimension "mode"
+        }
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    implementation 'com.android.support:appcompat-v7:26.0.0-beta2'
-    testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // android support libraries
+    implementation libraries.supportAppCompat
+    implementation libraries.supportDesign
+    implementation libraries.supportCardView
+    implementation libraries.gRecyclerView
+    implementation libraries.constrainLayout
+    implementation libraries.vectorDrawable
+    implementation libraries.vectorDrawableAnimated
+    // image
+    implementation libraries.glide
+    // parser
+    implementation libraries.gson
+    // dependency injection
+    implementation libraries.dagger
+    annotationProcessor libraries.daggerCompiler
+    provided libraries.javaxAnnotation
+    implementation libraries.javaxInject
+    // reactive
+    implementation libraries.rxJava
+    implementation libraries.rxandroid
+    // code generator for view
+    implementation libraries.butterKnife
+    annotationProcessor libraries.butterKnifeCompiler
+    // dependencies for local unit tests
+    testImplementation libraries.junit
+    testImplementation libraries.mockitoCore
+    testAnnotationProcessor libraries.daggerCompiler
+    // UI Testing
+    androidTestImplementation libraries.espressoCore
+    androidTestImplementation libraries.espressoIntents
+    androidTestImplementation libraries.mockitoCore
+    androidTestAnnotationProcessor libraries.daggerCompiler
+    implementation project(':common-lib')
 }
+
+configurations.all {
+    resolutionStrategy.force libraries.supportAnnotations
+}
+
