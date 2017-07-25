@@ -19,21 +19,18 @@
 package com.gm.tolet.ui.base;
 
 /**
- * Created by janisharali on 27/01/17.
+ * Name       : Gowtham
+ * Created on : 17/7/17.
+ * Email      : goutham.gm11@gmail.com
  */
 
 import android.util.Log;
 
-import com.androidnetworking.common.ANConstants;
-import com.androidnetworking.error.ANError;
+import com.gm.tolet.utils.rx.SchedulerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import com.mindorks.framework.mvp.R;
-import com.mindorks.framework.mvp.data.DataManager;
-import com.mindorks.framework.mvp.data.network.model.ApiError;
-import com.mindorks.framework.mvp.utils.AppConstants;
-import com.mindorks.framework.mvp.utils.rx.SchedulerProvider;
+
 
 import javax.inject.Inject;
 import javax.net.ssl.HttpsURLConnection;
@@ -49,17 +46,18 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     private static final String TAG = "BasePresenter";
 
-    private final DataManager mDataManager;
+//    private final DataManager mDataManager;
     private final SchedulerProvider mSchedulerProvider;
     private final CompositeDisposable mCompositeDisposable;
 
     private V mMvpView;
 
     @Inject
-    public BasePresenter(DataManager dataManager,
+    public BasePresenter(
+//            DataManager dataManager,
                          SchedulerProvider schedulerProvider,
                          CompositeDisposable compositeDisposable) {
-        this.mDataManager = dataManager;
+//        this.mDataManager = dataManager;
         this.mSchedulerProvider = schedulerProvider;
         this.mCompositeDisposable = compositeDisposable;
     }
@@ -87,9 +85,9 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
         if (!isViewAttached()) throw new MvpViewNotAttachedException();
     }
 
-    public DataManager getDataManager() {
-        return mDataManager;
-    }
+//    public DataManager getDataManager() {
+//        return mDataManager;
+//    }
 
     public SchedulerProvider getSchedulerProvider() {
         return mSchedulerProvider;
@@ -100,9 +98,9 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
     }
 
     @Override
-    public void handleApiError(ANError error) {
+    public void handleApiError(Exception error) {
 
-        if (error == null || error.getErrorBody() == null) {
+       /* if (error == null || error.getErrorBody() == null) {
             getMvpView().onError(R.string.api_default_error);
             return;
         }
@@ -143,12 +141,12 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
         } catch (JsonSyntaxException | NullPointerException e) {
             Log.e(TAG, "handleApiError", e);
             getMvpView().onError(R.string.api_default_error);
-        }
+        }*/
     }
 
     @Override
     public void setUserAsLoggedOut() {
-        getDataManager().setAccessToken(null);
+//        getDataManager().setAccessToken(null);
     }
 
     public static class MvpViewNotAttachedException extends RuntimeException {

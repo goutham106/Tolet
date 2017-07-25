@@ -34,6 +34,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gm.common_lib.utils.CommonUtils;
+import com.gm.common_lib.utils.NetworkUtils;
+import com.gm.tolet.R;
 import com.gm.tolet.ToletApp;
 import com.gm.tolet.di.component.ActivityComponent;
 import com.gm.tolet.di.module.ActivityModule;
@@ -41,7 +44,9 @@ import com.gm.tolet.di.module.ActivityModule;
 import butterknife.Unbinder;
 
 /**
- * Created by janisharali on 27/01/17.
+ * Name       : Gowtham
+ * Created on : 17/7/17.
+ * Email      : goutham.gm11@gmail.com
  */
 
 public abstract class BaseActivity extends AppCompatActivity
@@ -158,8 +163,8 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void openActivityOnTokenExpire() {
-        startActivity(LoginActivity.getStartIntent(this));
-        finish();
+//        startActivity(LoginActivity.getStartIntent(this));
+//        finish();
     }
 
     public void setUnBinder(Unbinder unBinder) {

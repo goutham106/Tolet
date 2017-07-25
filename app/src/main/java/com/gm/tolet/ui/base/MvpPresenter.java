@@ -19,10 +19,11 @@
 package com.gm.tolet.ui.base;
 
 /**
- * Created by janisharali on 27/01/17.
+ * Name       : Gowtham
+ * Created on : 17/7/17.
+ * Email      : goutham.gm11@gmail.com
  */
 
-import com.androidnetworking.error.ANError;
 
 /**
  * Every presenter in the app must either implement this interface or extend BasePresenter
@@ -34,7 +35,7 @@ public interface MvpPresenter<V extends MvpView> {
 
     void onDetach();
 
-    void handleApiError(ANError error);
+    void handleApiError(Exception error);
 
     void setUserAsLoggedOut();
 }

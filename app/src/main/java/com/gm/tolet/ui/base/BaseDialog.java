@@ -35,12 +35,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
-import com.mindorks.framework.mvp.di.component.ActivityComponent;
+import com.gm.tolet.di.component.ActivityComponent;
 
 import butterknife.Unbinder;
 
 /**
- * Created by janisharali on 24/05/17.
+ * Name       : Gowtham
+ * Created on : 17/7/17.
+ * Email      : goutham.gm11@gmail.com
  */
 
 public abstract class BaseDialog extends DialogFragment implements DialogMvpView {

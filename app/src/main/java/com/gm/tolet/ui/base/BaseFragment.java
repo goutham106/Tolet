@@ -26,13 +26,16 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.mindorks.framework.mvp.di.component.ActivityComponent;
-import com.mindorks.framework.mvp.utils.CommonUtils;
+
+import com.gm.common_lib.utils.CommonUtils;
+import com.gm.tolet.di.component.ActivityComponent;
 
 import butterknife.Unbinder;
 
 /**
- * Created by janisharali on 27/01/17.
+ * Name       : Gowtham
+ * Created on : 17/7/17.
+ * Email      : goutham.gm11@gmail.com
  */
 
 public abstract class BaseFragment extends Fragment implements MvpView {

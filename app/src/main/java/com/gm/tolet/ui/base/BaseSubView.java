@@ -25,7 +25,9 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 
 /**
- * Created by janisharali on 27/01/17.
+ * Name       : Gowtham
+ * Created on : 17/7/17.
+ * Email      : goutham.gm11@gmail.com
  */
 
 public abstract class BaseSubView extends ViewGroup implements SubMvpView {

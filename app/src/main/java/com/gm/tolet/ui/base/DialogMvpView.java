@@ -19,7 +19,9 @@
 package com.gm.tolet.ui.base;
 
 /**
- * Created by janisharali on 24/05/17.
+ * Name       : Gowtham
+ * Created on : 17/7/17.
+ * Email      : goutham.gm11@gmail.com
  */
 
 public interface DialogMvpView extends MvpView {

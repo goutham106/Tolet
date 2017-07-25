@@ -16,39 +16,34 @@
  *
  */
 
-package com.gm.tolet.ui.base;
+package com.gm.common_lib.utils;
+
+import android.text.format.DateUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Name       : Gowtham
  * Created on : 17/7/17.
  * Email      : goutham.gm11@gmail.com
  */
+public class DateTimeUtils {
 
-import android.support.annotation.StringRes;
+  /**
+   * Converts epoch time to relative time span.
+   *
+   * @param time time epoch in seconds. i.e: 1496491779
+   * @return relative time span compared with current. i.e: 5 minutes ago
+   */
+  public static String formatRelativeTime(long time) {
+    return DateUtils.getRelativeTimeSpanString(time * 1000, System.currentTimeMillis(),
+        DateUtils.MINUTE_IN_MILLIS).toString();
+  }
 
-/**
- * Base interface that any class that wants to act as a View in the MVP (Model View Presenter)
- * pattern must implement. Generally this interface will be extended by a more specific interface
- * that then usually will be implemented by an Activity or Fragment.
- */
-public interface MvpView {
-
-    void showLoading();
-
-    void hideLoading();
-
-    void openActivityOnTokenExpire();
-
-    void onError(@StringRes int resId);
-
-    void onError(String message);
-
-    void showMessage(String message);
-
-    void showMessage(@StringRes int resId);
-
-    boolean isNetworkConnected();
-
-    void hideKeyboard();
+  public static String getTimeStamp() {
+    return new SimpleDateFormat(AppConstants.TIMESTAMP_FORMAT, Locale.US).format(new Date());
+  }
 
 }
